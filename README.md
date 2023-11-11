@@ -35,16 +35,16 @@ Create a new user by navigating to http://localhost:3000/register. You can then 
 ### Features
 The application currently supports the following features:
 
--[x] User Login
--[x] User Registration
--[ ] Password Reset
+- [x] User Login
+- [x] User Registration
+- [ ] Password Reset
 
 
 ### Future work
 The following features are planned for future work:
--[ ] Email verification
--[ ] Social login
--[ ] Two-factor authentication
+- [ ] Email verification
+- [ ] Social login
+- [ ] Two-factor authentication
 
 ### Contributing
 Contributions to this project are welcome. If you have any suggestions or bug reports, please feel free to create an issue on GitHub.
