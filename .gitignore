@@ -219,21 +219,22 @@ Temporary Items
 ### NextJS ###
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
+/frontend/node_modules
+/frontend/.pnp
+/frontend/.pnp.js
 
 # testing
-/coverage
+/frontend/coverage
 
 # next.js
-/.next/
-/out/
+/frontend/.next/
+/frontend/out/
 
 # production
-/build
+/frontend/build
 
 # misc
-*.pem
+/frontend/*.pem
 
 # debug
 npm-debug.log*

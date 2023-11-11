@@ -7,7 +7,7 @@ from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 class GoogleLoginView(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
     client_class = OAuth2Client
-    callbacl_url = "http://localhost:3000"
+    callback_url = "http://localhost:3000/api/auth/callback/google"
 
 
 class GitHubLoginView(GoogleLoginView):

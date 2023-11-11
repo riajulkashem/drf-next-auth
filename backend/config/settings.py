@@ -16,7 +16,7 @@ from pathlib import Path
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, True)
 )
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +32,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Local apps
+    'authentication',
 
     # Third party apps
     'rest_framework',
@@ -131,7 +134,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -141,6 +150,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = "none"
+AUTH_USER_MODEL = "authentication.User"
 
 # REST Framework settings
 REST_FRAMEWORK = {
@@ -154,6 +164,8 @@ REST_AUTH = {
     # JWT_AUTH_HTTPONLY should be off
     # otherwise dj-rest-auth won't send out refresh tokens.
     "JWT_AUTH_HTTPONLY": False,
+    'USER_DETAILS_SERIALIZER': 'authentication.serializer.UserDetailSerializer',
+    'USER_LOGIN_FIELDS': 'username'
 }
 
 # Simple JWT settings
@@ -191,10 +203,9 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 # CORS settings
-if DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = True
-else:
-    CORS_ALLOWED_ORIGINS = [
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:3000",
+]
